@@ -1,9 +1,11 @@
 package com.bbubbush.jpa.service;
 
 import com.bbubbush.jpa.entity.Member;
+import com.bbubbush.jpa.service.MemberService;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class MemberServiceTest {
     private MemberService service = new MemberService();

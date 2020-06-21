@@ -3,7 +3,8 @@ package com.bbubbush.jpa.service;
 import com.bbubbush.jpa.config.EntitimanagerUtils;
 import com.bbubbush.jpa.entity.Member;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 /**
  * Name: MemberService

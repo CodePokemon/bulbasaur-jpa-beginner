@@ -1,17 +1,20 @@
 package com.bbubbush.jpa.entiy;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@SequenceGenerator(
+        name = "MEMBER_SEQ_GENER"
+        , sequenceName = "MEMBER_SEQ"
+        , initialValue = 1
+        , allocationSize = 1
+)
 public class MemberUseIdAndGeneratedValue {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENER")
+//    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     private String name;

@@ -6,9 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class MemberTest {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("bbubbush");
@@ -20,7 +19,9 @@ public class MemberTest {
      *  [@Id 사용하기]
      *  - @Id는 기본키를 직접 할당 해야한다.
      *  - @GeneratedValue와 조합하여 자동으로 할당할 수 있다.
-     *  - 생략하면 예외를 발생시킬 것 같았으나, INSERT 문이 실행되지 않고 종료된다.(H2 DB 기준)
+     *
+     *  [비고]
+     *   - 기본키 주입을 생략하면 예외가 발생한다.
      */
     @Test
     public void use_id_annotation() {
@@ -39,6 +40,7 @@ public class MemberTest {
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -59,6 +61,9 @@ public class MemberTest {
      *   - IDENTITY : 데이터베이스에 생성방법을 위임한다.
      *   - SEQUENCE : 시퀀스 객체를 생성하여 다음값을 요청하여 받는다. 객체를 생성하는 쿼리와 값을 요청하는 쿼리를 확인할 수 있다.
      *   - TABLE : 기본키값을 관리할 테이블을 생성한다.
+     *
+     *  [비고]
+     *   - 기본키를 직접 주입 하면 오류가 발생한다.
      */
     @Test
     public void you_can_change_generated_strategy() {
@@ -71,13 +76,13 @@ public class MemberTest {
         try {
             // 아래 객체에서 전략을 변경해보면서 로그를 확인한다.
             MemberUseIdAndGeneratedValue member = new MemberUseIdAndGeneratedValue();
-//            member.setId(1L);
             member.setName("bbubbush");
 
             em.persist(member);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
         } finally {
             em.close();
         }

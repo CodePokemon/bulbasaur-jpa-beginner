@@ -11,7 +11,15 @@ public class Member {
     @Id
     private Long id;
 
-    @Column(name = "name")
+    @Column(
+            name = "name"           // 컬럼의 이름을 직접 매핑
+            , nullable = true       // Null 여부를 선택. 기본은 true
+//            , columnDefinition = "varchar(10) default 'bbubbush'"   // 직접 컬럼 정보를 기술할 수 있다.
+            , length = 10           // 문자열에 한해 길이를 제한할 수 있다. 기본값은 255
+            , insertable = true     // 등록가능여부를 선택한다. 기본값은 true.
+            , updatable = true      // 변경가능여부를 선택한다. 기본값은 true.
+            , unique = false        // 컬럼 내 중복값 여부를 선택한다. 기본값은 false.
+    )
     private String username;
 
     private Integer age;

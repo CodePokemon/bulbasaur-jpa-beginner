@@ -8,9 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.Date;
-import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class MemberTest {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("bbubbush");

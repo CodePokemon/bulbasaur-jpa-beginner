@@ -9,6 +9,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class RightMemberTest {
@@ -61,6 +64,39 @@ public class RightMemberTest {
         assertTrue(true);
     }
 
+    @Test
+    public void find() {
+        // given
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        String expectedUserName = "bbubbush";
+        String expectedTeamName = "Team Pika";
+
+        // when
+        tx.begin();
+        RightMember findMember = null;
+        try {
+            findMember = em.find(RightMember.class, 2L);
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+
+        // then
+        assertThat(findMember.getName(), is(equalTo(expectedUserName)));
+        assertThat(findMember.getTeam().getName(), is(equalTo(expectedTeamName)));
+    }
+
+    /**
+     * Name: setDefaultData
+     * Date: 2020/07/03
+     * Info:
+     *  [3영의 멤버와 3개의 팀 생성]
+     */
     private void setDefaultData(){
         // given
         EntityManager em = emf.createEntityManager();
@@ -105,6 +141,12 @@ public class RightMemberTest {
         }
     }
 
+    /**
+     * Name: destroy
+     * Date: 2020/07/03
+     * Info:
+     *  [EntityManagerFactory 닫기]
+     */
     @After
     public void destroy() {
         emf.close();

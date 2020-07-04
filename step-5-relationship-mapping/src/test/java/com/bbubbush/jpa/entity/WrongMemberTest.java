@@ -9,6 +9,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class WrongMemberTest {
@@ -77,31 +80,31 @@ public class WrongMemberTest {
         // when
         tx.begin();
         try {
-            RightTeam teamA = new RightTeam();
+            WrongTeam teamA = new WrongTeam();
             teamA.setName("Team Pika");
             em.persist(teamA);
 
-            RightMember memberA = new RightMember();
+            WrongMember memberA = new WrongMember();
             memberA.setName("bbubbush");
-            memberA.setTeam(teamA);
+            memberA.setTeamId(teamA.getTeamId());
             em.persist(memberA);
 
-            RightTeam teamB = new RightTeam();
+            WrongTeam teamB = new WrongTeam();
             teamB.setName("Team CC");
             em.persist(teamB);
 
-            RightMember memberB = new RightMember();
+            WrongMember memberB = new WrongMember();
             memberB.setName("junu");
-            memberB.setTeam(teamB);
+            memberB.setTeamId(teamB.getTeamId());
             em.persist(memberB);
 
-            RightTeam teamC = new RightTeam();
+            WrongTeam teamC = new WrongTeam();
             teamC.setName("Team PaiPai");
             em.persist(teamC);
 
-            RightMember memberC = new RightMember();
+            WrongMember memberC = new WrongMember();
             memberC.setName("imesung");
-            memberC.setTeam(teamC);
+            memberC.setTeamId(teamC.getTeamId());
             em.persist(memberC);
 
             tx.commit();
@@ -111,6 +114,36 @@ public class WrongMemberTest {
         } finally {
             em.close();
         }
+    }
+
+    @Test
+    public void find() {
+        // given
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        String expectedUserName = "junu";
+        String expectedTeamName = "Team CC";
+
+        // when
+        tx.begin();
+        WrongMember findMember = null;
+        WrongTeam findTeam = null;
+        try {
+            findMember = em.find(WrongMember.class, 4L);
+            Long findTeamId = findMember.getTeamId();
+            findTeam = em.find(WrongTeam.class, findTeamId);
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+
+        // then
+        assertThat(findMember.getName(), is(equalTo(expectedUserName)));
+        assertThat(findTeam.getName(), is(equalTo(expectedTeamName)));
     }
 
     /**

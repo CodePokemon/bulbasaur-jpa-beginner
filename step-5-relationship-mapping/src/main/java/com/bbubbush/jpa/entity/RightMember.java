@@ -10,7 +10,7 @@ public class RightMember {
     @Column(name = "USER_NAME")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "TEAM_ID")
     private RightTeam team;
 

@@ -33,6 +33,9 @@ public class RightMemberTest {
      * Date: 2020/06/21
      * Info:
      *  [OOP 객체 모델링 - 저장]
+     *  - WrongMemberTest와 비교하면서 보자.
+     *  - RightMeber는 Team을 객체로 바라보게 설계되었다. 따라서 FK를 명시해 주는 것이 아니라 Team 객체로 연결된다.
+     *  - 객체지향 모델링을 중심으로 둔 설계방법이다.
      */
     @Test
     public void save() {
@@ -64,6 +67,15 @@ public class RightMemberTest {
         assertTrue(true);
     }
 
+    /**
+     * Name: finc
+     * Date: 2020/07/05
+     * Info:
+     *  [OOP 객체 모델링 - 조회]
+     *  - WrongMember 객체와 명확한 차이를 드러내는 부분은 조회 시점이다.
+     *  - 객체지향적인 설계를 통해 RightMember 객체를 조회하면서, 동시에 RightTeam 정보에 접급할 수 있다.
+     *  - FetchType.LAZY를 통해 RightTeam을 사용하는 시점에 조회하는 방법도 가능하다.(기본은 FetchType.EAGER로 최초 조회시점에 Join을 통해 조회)
+     */
     @Test
     public void find() {
         // given

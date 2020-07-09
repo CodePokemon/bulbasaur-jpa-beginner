@@ -1,5 +1,6 @@
 package com.bbubbush.jpa.entity;
 
+import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
@@ -7,14 +8,16 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.*;
 
 public class MemberTest {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("bbubbush");
 
 
     /**
-     * Name: update_team
+     * Name: update_team_owner
      * Date: 2020/07/07
      * Info:
      *  [양방향 매핑 - 주인에만 값을 변경하는 경우]
@@ -107,4 +110,57 @@ public class MemberTest {
         assertTrue(true);
     }
 
+    /**
+     * Name: update_team_both
+     * Date: 2020/07/09
+     * Info:
+     *  [양방향 매핑 - 양쪽 모두 값을 변경하는 경우]
+     *  - 권장되는 방법이다. 변경 이후 detach 상태가 되어도 데이터베이스와 일원화된 상태로 객체가 남기 때문에 오류가 발생할 원인이 줄어든다.
+     *  -
+     */
+    @Test
+    public void update_team_both() {
+        // given
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        String expectedTeamName = "Team New Pika";
+        String afterUpdateTeamName = null;
+
+        // when
+        tx.begin();
+        try {
+            Team team = new Team();
+            team.setName("Team GgobukGgobuk");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setName("bbubbush");
+            member.setTeam(team);
+            em.persist(member);
+            Long findMemberId = member.getMemberId();
+
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class, findMemberId);
+            Team newTeam = new Team();
+            newTeam.setName(expectedTeamName);
+            em.persist(newTeam);
+
+            // Member, Team 둘 다 관리해야 한다.
+            findMember.setTeam(newTeam);
+            newTeam.getMembers().add(findMember);
+            afterUpdateTeamName = findMember.getTeam().getName();
+            
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+
+        // then
+        assertThat(afterUpdateTeamName, equalTo(expectedTeamName));
+    }
 }

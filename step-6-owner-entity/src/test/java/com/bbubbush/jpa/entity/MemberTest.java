@@ -1,7 +1,5 @@
 package com.bbubbush.jpa.entity;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
@@ -9,9 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class MemberTest {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("bbubbush");
@@ -22,7 +18,10 @@ public class MemberTest {
      * Date: 2020/07/07
      * Info:
      *  [양방향 매핑 - 주인에만 값을 변경하는 경우]
-     *
+     *  - 관계의 주인이 아니면 데이터 변경의 주도권이 없다. 다른 의미로 mappedBy매핑은 오로지 조회만 가능하다.
+     *  - 이는 관계형 DB는 FK로 여러 테이블을 하나로 연결하지만, 객체지향에서는 이렇게 구현될 수 없다.
+     *  - 따라서 양 Entity에서 단방향으로 서로를 접근할 수 있게 구현하여 마치 '양방향'처럼 행동하게 한다.
+     *    따라서 매핑의 주인을 설정하여 한쪽에서만 데이터의 변경을 관리하게 해야한다.
      */
     @Test
     public void update_team_owner() {
@@ -66,6 +65,10 @@ public class MemberTest {
      * Date: 2020/07/08
      * Info:
      *  [양방향 매핑 - mappedBy에만 값을 변경하는 경우]
+     *  - 관계의 주인이 아니면 데이터 변경의 주도권이 없다. 다른 의미로 mappedBy매핑은 오로지 조회만 가능하다.
+     *  - 이는 관계형 DB는 FK로 여러 테이블을 하나로 연결하지만, 객체지향에서는 이렇게 구현될 수 없다.
+     *  - 따라서 양 Entity에서 단방향으로 서로를 접근할 수 있게 구현하여 마치 '양방향'처럼 행동하게 한다.
+     *    따라서 매핑의 주인을 설정하여 한쪽에서만 데이터의 변경을 관리하게 해야한다.
      */
     @Test
     public void update_team_mappedBy() {

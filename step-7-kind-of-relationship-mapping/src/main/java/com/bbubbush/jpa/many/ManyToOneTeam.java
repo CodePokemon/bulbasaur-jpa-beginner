@@ -1,16 +1,29 @@
 package com.bbubbush.jpa.many;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "MANY_TO_ONE_TEAM")
 public class ManyToOneTeam {
-    @Id
+    @Id @GeneratedValue @Column(name = "TEAM_ID")
     private Long teamId;
+    @Column(name = "TEAM_NAME")
+    private String teamName;
 
-    @OneToMany
-    private List<ManyToOneMember> members = new ArrayList<ManyToOneMember>();
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 }
+

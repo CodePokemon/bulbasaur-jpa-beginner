@@ -1,10 +1,17 @@
 package com.bbubbush.jpa.one;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "One_TO_MANY_MEMBER")
 public class OneToManyMember {
-    @Id
+    @Id @GeneratedValue @Column(name = "MEMBER_ID")
     private Long memberId;
+    @Column(name = "MEMBER_NAME")
+    private String memberName;
+
+    @OneToMany
+    private List<OneToManyTeam> teams = new ArrayList<OneToManyTeam>();
 }

@@ -1,10 +1,15 @@
 package com.bbubbush.jpa.one;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "ONE_TO_ONE_MEMBER")
 public class OneToOneMember {
-    @Id
+    @Id @GeneratedValue @Column(name = "MEMBER_ID")
     private Long memberId;
+    @Column(name = "MEMBER_NAME")
+    private String memberName;
+
+    @OneToOne(mappedBy = "member")
+    private OneToOneTeam team;
 }

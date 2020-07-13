@@ -1,10 +1,15 @@
 package com.bbubbush.jpa.many;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "MANY_TO_MANY_TEAM")
 public class ManyToManyTeam {
-    @Id
+    @Id @GeneratedValue @Column(name = "TEAM_ID")
     private Long teamId;
+    @Column(name = "TEAM_NAME")
+    private String teamName;
+
 }

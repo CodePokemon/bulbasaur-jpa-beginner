@@ -11,7 +11,7 @@ public class ManyToOneMember {
     private String memberName;
 
     @ManyToOne
-    @JoinColumn(name = "member")
+    @JoinColumn(name = "TEAM_ID")
     private ManyToOneTeam team;
 
     public Long getMemberId() {

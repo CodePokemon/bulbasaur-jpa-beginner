@@ -12,6 +12,4 @@ public class OneToManyMember {
     @Column(name = "MEMBER_NAME")
     private String memberName;
 
-    @OneToMany
-    private List<OneToManyTeam> teams = new ArrayList<OneToManyTeam>();
 }

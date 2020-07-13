@@ -14,5 +14,6 @@ public class ManyToManyMember {
 
     @ManyToMany
     @JoinColumn(name = "TEAM_ID")
+    @JoinTable(name = "CONNECTION_TABLE")
     private List<ManyToManyTeam> teams = new ArrayList<ManyToManyTeam>();
 }

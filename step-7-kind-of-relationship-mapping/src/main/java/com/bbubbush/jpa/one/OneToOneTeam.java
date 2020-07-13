@@ -11,5 +11,6 @@ public class OneToOneTeam {
     private String teamName;
 
     @OneToOne
-    private OneToManyMember member;
+    @JoinColumn(name = "MEMBER_ID")
+    private OneToOneMember member;
 }

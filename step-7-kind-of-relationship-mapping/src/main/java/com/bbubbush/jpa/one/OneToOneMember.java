@@ -10,6 +10,6 @@ public class OneToOneMember {
     @Column(name = "MEMBER_NAME")
     private String memberName;
 
-    @OneToOne
-    private OneToManyTeam team;
+    @OneToOne(mappedBy = "member")
+    private OneToOneTeam team;
 }

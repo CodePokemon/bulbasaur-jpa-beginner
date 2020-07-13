@@ -12,7 +12,4 @@ public class ManyToManyTeam {
     @Column(name = "TEAM_NAME")
     private String teamName;
 
-    @ManyToMany
-    private List<ManyToManyMember> teams = new ArrayList<ManyToManyMember>();
-
 }

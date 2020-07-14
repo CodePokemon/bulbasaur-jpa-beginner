@@ -13,4 +13,28 @@ public class OneToOneTeam {
     @OneToOne
     @JoinColumn(name = "MEMBER_ID")
     private OneToOneMember member;
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public OneToOneMember getMember() {
+        return member;
+    }
+
+    public void setMember(OneToOneMember member) {
+        this.member = member;
+    }
 }

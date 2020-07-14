@@ -14,14 +14,15 @@ import static org.junit.Assert.assertTrue;
 public class ManyToOneRelationshipTest {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("bbubbush");
 
-
     /**
      * Name: many_to_one_relationship
      * Date: 2020/07/13
      * Info:
      *  [단방향 매핑 - @ManyToOne]
-     *  - 항상 Member.class가 주인이 된다.
-     *  - @ManyToMany, @OneToOne을 제외하고는 단방향 매핑만 존재한다.
+     *  - Member(Many) : Team(One)
+     *  - MANY_TO_ONE_MEMBER.TEAM_ID가 주인이 된다.
+     *  - 가장 많이 사용하는 연관관계. 반대는 @OneToMany.
+     *  - 양방향 매핑이 필요하면 FK 쪽을 관계의 주인으로 설정한다. (DB 설계상 대부분 Many쪽이 FK를 갖게 된다.)
      */
     @Test
     public void many_to_one_relationship() {

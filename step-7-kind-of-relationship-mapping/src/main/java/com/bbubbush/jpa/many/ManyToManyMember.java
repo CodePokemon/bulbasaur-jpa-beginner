@@ -16,4 +16,28 @@ public class ManyToManyMember {
     @JoinColumn(name = "TEAM_ID")
     @JoinTable(name = "CONNECTION_TABLE")
     private List<ManyToManyTeam> teams = new ArrayList<ManyToManyTeam>();
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public List<ManyToManyTeam> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<ManyToManyTeam> teams) {
+        this.teams = teams;
+    }
 }

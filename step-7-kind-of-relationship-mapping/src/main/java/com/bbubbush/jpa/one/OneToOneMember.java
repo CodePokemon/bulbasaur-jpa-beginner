@@ -12,4 +12,28 @@ public class OneToOneMember {
 
     @OneToOne(mappedBy = "member")
     private OneToOneTeam team;
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public OneToOneTeam getTeam() {
+        return team;
+    }
+
+    public void setTeam(OneToOneTeam team) {
+        this.team = team;
+    }
 }

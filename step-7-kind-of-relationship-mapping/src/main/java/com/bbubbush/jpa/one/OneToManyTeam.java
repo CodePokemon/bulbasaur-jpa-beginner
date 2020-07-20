@@ -15,4 +15,28 @@ public class OneToManyTeam {
     @OneToMany
     @JoinColumn(name = "TEAM_ID")
     private List<OneToManyMember> members = new ArrayList<OneToManyMember>();
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public List<OneToManyMember> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<OneToManyMember> members) {
+        this.members = members;
+    }
 }

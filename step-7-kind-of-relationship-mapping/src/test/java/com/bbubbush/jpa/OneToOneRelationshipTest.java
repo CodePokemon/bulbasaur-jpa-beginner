@@ -17,7 +17,7 @@ public class OneToOneRelationshipTest {
     /**
      * Name: one_to_one_relationship
      * Date: 2020/07/14
-     * Info:
+     * Info: 
      *  [양방향 매핑 - @OneToOne]
      *  - Member(One) : Team(One)
      *  - @OneToOne의 단방향은 JPA에서 지원하지 않는다.

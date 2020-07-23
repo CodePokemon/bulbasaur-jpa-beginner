@@ -27,7 +27,7 @@ public class ManyToManyRelationshipTest {
      *  - 따라서 연결테이블을 엔티티로 변경하여 비즈니스에 맞게 설계하는 것이 낫다.
      *  - Member(N) : Team(M)  ->  Member(N) : (1) New Entity (1) : Team(M)
      *  - 위와 같이 @ManyToOne 혹은 @OneToMany로 풀어낸다.
-     *
+     * 
      *  - 결론 :: @ManyToMany는 새로운 엔티티를 도입하여 비즈니스를 재검토하여 @ManyToOne 혹은 @OneToMany로 변경한다.
      */
     @Test

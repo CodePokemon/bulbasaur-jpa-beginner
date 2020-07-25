@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>step-8-mappedSuperclass-annotation</artifactId>
+    <artifactId>step-8-inheritance-annotation</artifactId>
 
 
 </project>

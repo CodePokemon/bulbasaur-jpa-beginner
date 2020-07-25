@@ -13,24 +13,30 @@ public class ItemTest {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("bbubbush");
 
     @Test
-    public void setUp() {
-//        // given
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction tx = em.getTransaction();
-//
-//        // when
-//        tx.begin();
-//        try {
-//
-//            tx.commit();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            tx.rollback();
-//        } finally {
-//            em.close();
-//        }
-//
-//        // then - 형식적인 결과 확인
-//        assertTrue(true);
+    public void movie_test() {
+        // given
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        // when
+        tx.begin();
+        try {
+            Movie movie = new Movie();
+            movie.setName("End game");
+            movie.setPrice(10000L);
+            movie.setDirector("Russo Brothers");
+            movie.setActor("Robert downey jr");
+            em.persist(movie);
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+
+        // then - 형식적인 결과 확인
+        assertTrue(true);
     }
 }

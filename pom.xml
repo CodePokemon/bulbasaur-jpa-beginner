@@ -17,7 +17,7 @@
         <module>step-5-relationship-mapping</module>
         <module>step-6-owner-entity</module>
         <module>step-7-kind-of-relationship-mapping</module>
-        <module>step-8-mappedSuperclass-annotation</module>
+        <module>step-8-inheritance-annotation</module>
     </modules>
 
     <!-- properties는 런타임 환경에 따라 필요없을 수 있습니다.   -->

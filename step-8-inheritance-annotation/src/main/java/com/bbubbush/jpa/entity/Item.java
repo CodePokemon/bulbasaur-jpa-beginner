@@ -3,9 +3,9 @@ package com.bbubbush.jpa.entity;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) // 전략을 변경하면서 확인할 수 있다.
+//@Inheritance(strategy = InheritanceType.JOINED) // 전략을 변경하면서 확인할 수 있다.
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "DTYPE")
 public abstract class Item {
     @Id @GeneratedValue

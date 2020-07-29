@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Team extends BaseEntity {
+public class Team {
     @Id @GeneratedValue
     private long teamId;
 

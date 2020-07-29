@@ -1,6 +1,5 @@
 package com.bbubbush.jpa.entity;
 
-import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;

@@ -1,6 +1,5 @@
 package com.bbubbush.jpa.entity;
 
-import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 

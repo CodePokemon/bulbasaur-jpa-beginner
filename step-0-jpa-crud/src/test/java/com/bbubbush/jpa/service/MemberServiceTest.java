@@ -1,7 +1,7 @@
 package com.bbubbush.jpa.service;
 
 import com.bbubbush.jpa.entity.Member;
-import com.bbubbush.jpa.service.MemberService;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

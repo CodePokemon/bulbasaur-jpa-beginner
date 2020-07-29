@@ -3,7 +3,6 @@ package com.bbubbush.jpa.entity;
 import com.bbubbush.jpa.type.RoleType;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity

@@ -13,6 +13,10 @@ public class Member {
     @JoinColumn(name = "teamId")
     private Team team;
 
+    public long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

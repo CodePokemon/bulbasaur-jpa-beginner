@@ -11,6 +11,10 @@ public class Team {
 
     private String name;
 
+    public long getTeamId() {
+        return teamId;
+    }
+
     public String getName() {
         return name;
     }

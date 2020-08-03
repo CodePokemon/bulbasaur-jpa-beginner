@@ -3,15 +3,15 @@ package com.bbubbush.jpa.entity;
 import javax.persistence.*;
 
 @Entity
-public class Member {
+public class EagerLoadindMember {
     @Id @GeneratedValue
     private long id;
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teamId")
-    private Team team;
+    private EagerLoadingTeam team;
 
     public long getId() {
         return id;
@@ -25,11 +25,11 @@ public class Member {
         this.name = name;
     }
 
-    public Team getTeam() {
+    public EagerLoadingTeam getTeam() {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void setTeam(EagerLoadingTeam team) {
         this.team = team;
     }
 }

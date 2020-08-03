@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Team {
+public class EagerLoadingTeam {
     @Id @GeneratedValue
     private long teamId;
 
